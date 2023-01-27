@@ -1,0 +1,125 @@
+
+
+body {
+    font-family: "open sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
+    font-size: 13px;
+    color: #676a6c;
+    background: #f3f3f4;
+  }
+  
+  .conteudo-sistema {
+    padding: 10px;
+  }
+  
+  .btn-atualizar {
+    padding: 1px 5px;
+    font-size: 12px;
+    line-height: 1.5;
+  }
+  
+  .btn-export {
+    border: 1px solid #e7eaec;
+    background: #fff;
+    color: #676a6c;
+    box-shadow: none;
+    padding: 6px 8px;
+    font-size: 12px;
+  }
+  
+  .btn-export:hover {
+    border: 1px solid #d2d2d2;
+    background: #eee;
+    color: #676a6c;
+    box-shadow: none;
+    padding: 6px 8px;
+    font-size: 12px;
+  }
+
+  .btn-width-80 {
+    width: 80%;
+  }
+  
+  .sticky {
+    position: fixed;
+    width: 100%;
+  }
+  
+  .sticky-note {
+    position: absolute;
+    left: 10px;
+    top: 10px;
+    width: 300px;
+    height: 450px;
+    z-index: 20;
+    /*margin-left: 3px;*/
+  }
+  
+  /*Componente de Helper*/
+  .Texto {
+    position: relative;
+    display: inline-block;
+  }
+  
+  .Texto .TextoMostra {
+    visibility: hidden;
+    width: 200px;
+    height: auto;
+    background-color: #2f4050;
+    color: #fff;
+    text-align: center;
+    border-radius: 6px;
+    padding: 15px;
+    margin-left: 0px;
+    margin-top: 45px;
+    box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+    position: absolute;
+    z-index: 100;
+    opacity: 1;
+  }
+  
+  .Texto .TableHint {
+    visibility: hidden;
+    width: 960px;
+    height: auto;
+    background-color: #2f4050b5;
+    /*color: #fff;*/
+    text-align: justify;
+    border-radius: 6px;
+    padding: 5px;
+    margin-left: -1000px;
+    margin-top: -280px;
+    box-shadow: 8px 8px 16px 0px rgba(0, 0, 0, 0.2);
+    position: fixed;
+    z-index: 1000000;
+    opacity: 1;
+  }
+  
+  .TableHint .table th {
+    text-align: left;
+  }
+  
+  .TableHint .table td {
+    font-weight: normal;
+  }
+  
+  .TableHint .table {
+    background-color: #fff !important;
+  }
+  .Texto:hover .TextoMostra {
+    visibility: visible;
+  }
+  
+  .Texto:hover .TableHint {
+    visibility: visible;
+  }
+
+  .mx-datepicker{
+    width: 120px;
+  }
+
+  .amostraCor{
+    font-size: xx-small;
+    color: rgba(255, 255, 255, 0);
+    width: 61px; 
+    height: 31px; 
+  }
