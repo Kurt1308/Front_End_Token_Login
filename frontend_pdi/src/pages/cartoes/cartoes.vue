@@ -68,7 +68,12 @@ export default {
       return numeroTratado;
     },
     formatAnoMesVenc(data){
-      let dataTratada = data.toString().slice(0,4) + '-' + data.toString().toString().slice(4, 6);
+      let dataTratada = "";
+      if(data.length < 7){
+        dataTratada = data.toString().slice(0,4) + '-' + data.toString().toString().slice(4, 6);
+      } else {
+        dataTratada = data.toString().slice(6,10) + '-' + data.toString().toString().slice(3, 5);
+      }
       return dataTratada;
     },
     formatDecimal(valor){
