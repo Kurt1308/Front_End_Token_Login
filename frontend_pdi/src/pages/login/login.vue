@@ -85,7 +85,7 @@ export default {
         this.senha,
         $config.chaveCriptografia
       ).toString();
-      let data = { username: this.email, password: this.senha };
+      let data = { username: this.email, password: senha };
       LoginService.loginAutenticacao(data).then(response => {
         if (response.success) {
           $sessao._setSessionFromToken(response.data.token.substring(7));
