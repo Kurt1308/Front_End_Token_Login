@@ -3,7 +3,7 @@
     <div :class="'menu'">
       <div class="menu wrapper">
         <nav id="sidebar">
-          <div class="sidebar-header" style="background-color:black">
+          <div class="sidebar-header">
             <span style="margin-bottom: 10px">
               <img width="165" style="width: 95%" src="../../assets/logo.jpg" />
             </span>
@@ -308,7 +308,6 @@ body {
   #sidebar .sidebar-header {
     padding: 33px 25px;
     background-color: #080808;
-    background-image: url(../../assets/images/header-profile.png);
   }
 
   #sidebar-mini .sidebar-header-reduzido {
