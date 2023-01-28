@@ -30,144 +30,56 @@
 </template>
 
 <script>
+import { TransacoesService } from "../../services/transacoes/transacoesService.js";
 export default {
   data() {
     return {
       stickyHeader: true,
       fields: [
         {
-          key: "id",
+          key: "id_transacao",
           stickyColumn: true,
           isRowHeader: true,
           variant: "primary"
         },
-        { key: "a", label: "Número Cartão", stickyColumn: true },
-        { key: "b", label: "Código da Aprovação", stickyColumn: true },
-        { key: "c", label: "Data da Transação", stickyColumn: true },
-        { key: "d", label: "Valor", stickyColumn: true }
+        { key: "num_cartao", label: "Número Cartão", stickyColumn: true },
+        { key: "id_aprovacao", label: "Código da Aprovação", stickyColumn: true },
+        { key: "data_transacao", label: "Data da Transação", stickyColumn: true },
+        { key: "valor", label: "Valor", stickyColumn: true }
       ],
       items: [
-        {
-          id: 1,
-          a: 0,
-          b: 1,
-          c: 2,
-          d: 3
-        },
-        {
-          id: 1,
-          a: 0,
-          b: 1,
-          c: 2,
-          d: 3
-        },
-        {
-          id: 1,
-          a: 0,
-          b: 1,
-          c: 2,
-          d: 3
-        },
-        {
-          id: 1,
-          a: 0,
-          b: 1,
-          c: 2,
-          d: 3
-        },
-        {
-          id: 1,
-          a: 0,
-          b: 1,
-          c: 2,
-          d: 3
-        },
-        {
-          id: 1,
-          a: 0,
-          b: 1,
-          c: 2,
-          d: 3
-        },
-        {
-          id: 1,
-          a: 0,
-          b: 1,
-          c: 2,
-          d: 3
-        },
-        {
-          id: 1,
-          a: 0,
-          b: 1,
-          c: 2,
-          d: 3
-        },
-        {
-          id: 1,
-          a: 0,
-          b: 1,
-          c: 2,
-          d: 3
-        },
-        {
-          id: 1,
-          a: 0,
-          b: 1,
-          c: 2,
-          d: 3
-        },
-        {
-          id: 1,
-          a: 0,
-          b: 1,
-          c: 2,
-          d: 3
-        },
-        {
-          id: 1,
-          a: 0,
-          b: 1,
-          c: 2,
-          d: 3
-        },
-        {
-          id: 1,
-          a: 0,
-          b: 1,
-          c: 2,
-          d: 3
-        },
-        {
-          id: 1,
-          a: 0,
-          b: 1,
-          c: 2,
-          d: 3
-        },
-        {
-          id: 1,
-          a: 0,
-          b: 1,
-          c: 2,
-          d: 3
-        },
-        {
-          id: 1,
-          a: 0,
-          b: 1,
-          c: 2,
-          d: 3
-        },
-        {
-          id: 1,
-          a: 0,
-          b: 1,
-          c: 2,
-          d: 3
-        }
       ]
     };
+  },
+  methods: {
+    carregarTransacoes() {
+      TransacoesService.getTransacoes()
+        .then(response => {
+          if (response.success) {
+            this.items = response.data.transacoes;
+            console.log("transações: ", response.data.transacoes)
+          } else {
+            this.$toast.warning(
+              response.data.mensagem || response.statusMessage,
+              {
+                position: "top-center",
+                timeout: 5000,
+                hideProgressBar: false
+              }
+            );
+          }
+        })
+        .catch(err => {
+          this.$toast.warning(err.message || err.statusMessage, {
+            position: "top-center",
+            timeout: 5000,
+            hideProgressBar: false
+          });
+        });
+    }
+  },
+  created() {
+    this.carregarTransacoes();
   }
 };
 </script>
