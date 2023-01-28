@@ -17,11 +17,7 @@
                 <span id="home-titulo" style="margin-left: 5px"> HOME </span>
               </router-link>
             </li>
-            <li
-              id="menu-Exemplo"
-              v-if="this.existeRoleCooperativa()"
-              :class="1"
-            >
+            <li>
               <a
                 class="item-menu"
                 @click="exibeSubExmplo = !exibeSubExmplo"
@@ -29,35 +25,29 @@
                 <span id="coop-titulo" style="margin-left: 5px"> CONTAS </span>
               </a>
               <router-link
-                id="sub-menu-regras"
+                id="menu-contas"
                 v-if="
-                  exibeSubExmplo &&
-                  this.existeRoleCooperativaRegrasReceita()
+                  exibeSubExmplo
                 "
                 :to="'/contas'"
                 class="item-menu"
               >
-                <span id="regra-receita-titulo" style="margin-left: 15px">
+                <span id="contas-cadastradas" style="margin-left: 15px">
                   Contas Cadastradas
                 </span>
               </router-link>
             </li>
-            <li
-              id="menu-Exemplo2"
-              v-if="this.existeRoleCooperativa()"
-              :class="1"
-            >
+            <li>
               <a
                 class="item-menu"
                 @click="exibeSubExemplo2 = !exibeSubExemplo2"
               >
-                <span id="coop-titulo" style="margin-left: 5px"> CARTÕES</span>
+                <span id="cartao" style="margin-left: 5px"> CARTÕES</span>
               </a>
               <router-link
-                id="sub-menu-regras"
+                id="manu-cartoes"
                 v-if="
-                  exibeSubExemplo2 &&
-                  this.existeRoleCooperativaRegrasReceita()
+                  exibeSubExemplo2
                 "
                 :to="'/cartoes'"
                 class="item-menu"
@@ -67,22 +57,17 @@
                 </span>
               </router-link>
             </li>
-            <li
-              id="menu-Exemplo3"
-              v-if="this.existeRoleCooperativa()"
-              :class="1"
-            >
+            <li>
               <a
                 class="item-menu"
                 @click="exibeSubExemplo3 = !exibeSubExemplo3"
               >
-                <span id="coop-titulo" style="margin-left: 5px"> TRANSAÇÕES</span>
+                <span id="transacoes" style="margin-left: 5px"> TRANSAÇÕES</span>
               </a>
               <router-link
                 id="sub-menu-regras"
                 v-if="
-                  exibeSubExemplo3 &&
-                  this.existeRoleCooperativaRegrasReceita()
+                  exibeSubExemplo3
                 "
                 :to="'/transacoes'"
                 class="item-menu"

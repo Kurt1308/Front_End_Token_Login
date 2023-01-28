@@ -24,6 +24,15 @@
       <template #head()="scope">
         <div class="text-nowrap">{{ scope.label }}</div>
       </template>
+      <template #cell(num_cartao)="data">
+          {{ formatNumeroCartao(data.item.num_cartao) }}
+        </template>
+        <template #cell(valor)="data">
+          {{ formatDecimal(data.item.valor) }}
+        </template>
+        <template #cell(data_transacao)="data">
+          {{ data.item.data_transacao | formatDateJustDate }}
+        </template>
     </b-table>
     </b-container>
   </div>
@@ -52,12 +61,19 @@ export default {
     };
   },
   methods: {
+    formatNumeroCartao(numCartao){
+      let numeroTratado = numCartao.toString().slice(0,4) + '-' + numCartao.toString().toString().slice(4, 8) + '-' + numCartao.toString().toString().slice(8, 12) + '-' + numCartao.toString().toString().slice(12, 16);
+      return numeroTratado;
+    },
+    formatDecimal(valor){
+      let valorTratado = valor.toFixed(2);
+      return valorTratado;
+    },
     carregarTransacoes() {
       TransacoesService.getTransacoes()
         .then(response => {
           if (response.success) {
             this.items = response.data.transacoes;
-            console.log("transações: ", response.data.transacoes)
           } else {
             this.$toast.warning(
               response.data.mensagem || response.statusMessage,
