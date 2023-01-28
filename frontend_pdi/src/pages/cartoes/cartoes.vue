@@ -14,12 +14,15 @@
             Mostrar detalhes deste cartão
           </b-form-checkbox>
         </template>
+        <template #cell(num_cartao)="data">
+          {{ formatNumeroCartao(data.item.num_cartao) }}
+        </template>
 
         <template #row-details="row">
           <b-card>
             <b-row class="mb-2">
               <b-col sm="2" class="text-sm-right"><b>Ano/Mês Venc:</b></b-col>
-              <b-col>{{ row.item.mes_ano_vencimento }}</b-col>
+              <b-col>{{ formatAnoMesVenc(row.item.mes_ano_vencimento) }}</b-col>
 
               <b-col sm="2" class="text-sm-right"><b>CVC:</b></b-col>
               <b-col>{{ row.item.cvc }}</b-col>
@@ -27,12 +30,12 @@
 
             <b-row class="mb-2">
               <b-col sm="2" class="text-sm-right"><b>Limite Saldo:</b></b-col>
-              <b-col>{{ row.item.limite_saldo }}</b-col>
+              <b-col>{{ formatDecimal(row.item.limite_saldo) }}</b-col>
 
               <b-col sm="2" class="text-sm-right"
                 ><b>Limite Disponível:</b></b-col
               >
-              <b-col>{{ row.item.limite_saldo_disponivel }}</b-col>
+              <b-col>{{ formatDecimal(row.item.limite_saldo_disponivel) }}</b-col>
             </b-row>
 
             <b-button size="sm" @click="row.toggleDetails"
@@ -51,7 +54,7 @@ export default {
   data() {
     return {
       fields: [
-        { key: "conta_id_conta", label: "Id Conta" },
+        //{ key: "conta_id_conta", label: "Id Conta" },
         { key: "num_cartao", label: "Número do Cartão" },
         { key: "show_details", label: "Detalhes" }
       ],
@@ -60,6 +63,18 @@ export default {
     };
   },
   methods: {
+    formatNumeroCartao(numCartao){
+      let numeroTratado = numCartao.toString().slice(0,4) + '-' + numCartao.toString().toString().slice(4, 8) + '-' + numCartao.toString().toString().slice(8, 12) + '-' + numCartao.toString().toString().slice(12, 16);
+      return numeroTratado;
+    },
+    formatAnoMesVenc(data){
+      let dataTratada = data.toString().slice(0,4) + '-' + data.toString().toString().slice(4, 6);
+      return dataTratada;
+    },
+    formatDecimal(valor){
+      let valorTratado = valor.toFixed(2);
+      return valorTratado;
+    },
     carregarCartoes() {
       CartoesService.getCartoes()
         .then(response => {
