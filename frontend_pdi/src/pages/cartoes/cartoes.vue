@@ -18,7 +18,7 @@
         <template #row-details="row">
           <b-card>
             <b-row class="mb-2">
-              <b-col sm="2" class="text-sm-right"><b>Mês/Ano Venc:</b></b-col>
+              <b-col sm="2" class="text-sm-right"><b>Ano/Mês Venc:</b></b-col>
               <b-col>{{ row.item.mes_ano_vencimento }}</b-col>
 
               <b-col sm="2" class="text-sm-right"><b>CVC:</b></b-col>
