@@ -19,11 +19,11 @@
             <b-card style="width: 48rem;">
               <div>
                 <label><h1><b>Valor da transação: </b></h1></label>
-                <b-input-group size="lg" prepend="$">
+                <b-input-group size="lg" prepend="R$" v-maska="'S* S*'">
                   <b-form-input></b-form-input>
                 </b-input-group>
                 <label><h1><b>Número do Cartão: </b></h1></label>
-                <b-input-group size="lg" prepend="Nº">
+                <b-input-group v-mask="'####-####-####-####'" size="lg" prepend="Nº">
                   <b-form-input></b-form-input>
                 </b-input-group>
               </div>
