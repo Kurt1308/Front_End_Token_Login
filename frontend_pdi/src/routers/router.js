@@ -5,6 +5,7 @@ import Inicio from "../pages/inicio/inicio.vue";
 import Contas from "../pages/contas/contas.vue";
 import Cartoes from "../pages/cartoes/cartoes.vue";
 import Transacoes from "../pages/transacoes/transacoes.vue";
+import RegistrarTransacoes from "../pages/transacoes/registrarTransacoes.vue";
 
 import Vue from "vue";
 import Router from "vue-router";
@@ -23,6 +24,7 @@ let router = new Router({
         { path: "/contas", component: Contas, name: "contas"},
         { path: "/cartoes", component: Cartoes, name: "cartoes"},
         { path: "/transacoes", component: Transacoes, name: "transacoes"},
+        { path: "/registrarTransacoes", component: RegistrarTransacoes, name: "registrarTransacoes"},
       ]
     }
   ]
