@@ -65,15 +65,27 @@
                 <span id="transacoes" style="margin-left: 5px"> TRANSAÇÕES</span>
               </a>
               <router-link
-                id="sub-menu-regras"
+                id="transacoes"
                 v-if="
                   exibeSubExemplo3
                 "
                 :to="'/transacoes'"
                 class="item-menu"
               >
-                <span id="regra-receita-titulo" style="margin-left: 15px">
+                <span id="transacoes" style="margin-left: 15px">
                   Transações
+                </span>
+              </router-link>
+              <router-link
+                id="registrar-transacoes"
+                v-if="
+                  exibeSubExemplo3
+                "
+                :to="'/registrarTransacoes'"
+                class="item-menu"
+              >
+                <span id="regristrar-transacoes" style="margin-left: 15px">
+                  Registrar Transações
                 </span>
               </router-link>
             </li>
@@ -134,6 +146,7 @@ export default {
       exibeSubExmplo: false,
       exibeSubExemplo2: false,
       exibeSubExemplo3: false,
+      exibeSubExemplo4: false,
       roles: [],
     };
   },
