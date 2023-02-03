@@ -1,7 +1,7 @@
 <template>
   <div style="width:100%; background-color: white;">
     <div class="text-center" style="padding-top: 10%">
-      <h1><b>Registrar Transações</b></h1>
+      <h1><b>Registrar Transação</b></h1>
     </div>
     <div>
       <b-button
