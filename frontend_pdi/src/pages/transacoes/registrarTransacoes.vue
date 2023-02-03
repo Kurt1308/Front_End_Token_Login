@@ -18,13 +18,13 @@
             <b-card style="width: 48rem;">
               <div>
                 <label
-                  ><h1><b>Valor da transação: {{ valor }}</b></h1></label
+                  ><h1><b>Valor da transação: </b></h1></label
                 >
                 <b-input-group size="lg" prepend="R$">
                   <b-form-input v-model="valor"></b-form-input>
                 </b-input-group>
                 <label
-                  ><h1><b>Número do Cartão: {{ numCartao }}</b></h1></label
+                  ><h1><b>Número do Cartão: </b></h1></label
                 >
                 <b-input-group
                   v-mask="'####-####-####-####'"
@@ -33,6 +33,7 @@
                 >
                   <b-form-input v-model="numCartao"></b-form-input>
                 </b-input-group>
+                <b-button style="margin-top:2%"></b-button>
               </div>
             </b-card>
           </b-collapse>
