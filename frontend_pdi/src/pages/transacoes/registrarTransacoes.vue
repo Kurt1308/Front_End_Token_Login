@@ -33,7 +33,7 @@
                 >
                   <b-form-input v-model="numCartao"></b-form-input>
                 </b-input-group>
-                <b-button style="margin-top:2%"></b-button>
+                <b-button style="margin-top:2%" @click="inserirTransacoes()">Enviar</b-button>
               </div>
             </b-card>
           </b-collapse>
@@ -53,7 +53,17 @@ export default {
     };
   },
   methods: {
-    inserirTransacoes(item) {
+    formataNumCartao(num){
+        num.split("-")
+        let numTratado = null;
+        numTratado.push(num[0])
+        console.log("num 1", numTratado)
+      return numTratado;
+    },
+    inserirTransacoes() {
+      let item = { valor: this.valor, numCartao: this.formataNumCartao(this.numCartao), id_aprovacao: "3fa85f64-5717-4562-b3fc-2c963f66afa6" };
+      console.log("item", item)
+      alert("oii")
       TransacoesService.addTransacao(item)
         .then(response => {
           if (response.success) {
