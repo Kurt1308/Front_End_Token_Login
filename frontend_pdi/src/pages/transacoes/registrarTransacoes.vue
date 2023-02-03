@@ -44,8 +44,8 @@ export default {
     };
   },
   methods: {
-    carregarTransacoes() {
-      TransacoesService.getTransacoes()
+    inserirTransacoes(item) {
+      TransacoesService.addTransacao(item)
         .then(response => {
           if (response.success) {
             this.items = response.data.transacoes;
