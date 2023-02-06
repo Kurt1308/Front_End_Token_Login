@@ -53,21 +53,38 @@ export default {
     };
   },
   methods: {
-    formataNumCartao(num){
-        num.split("-")
-        let numTratado = null;
-        numTratado.push(num[0])
-        console.log("num 1", numTratado)
-      return numTratado;
+    formataNumCartao(value){
+      var v = value.replace(/\s+/g, '').replace(/[^0-9]/gi, '')
+    var matches = v.match(/\d{4,16}/g);
+    var match = matches && matches[0] || ''
+    var parts = []
+
+    for (var i=0, len=match.length; i<len; i+=4) {
+        parts.push(match.substring(i, i+4))
+    }
+
+    if (parts.length) {
+        return parts.join('')
+    } else {
+        return value
+    }
     },
     inserirTransacoes() {
-      let item = { valor: this.valor, numCartao: this.formataNumCartao(this.numCartao), id_aprovacao: "3fa85f64-5717-4562-b3fc-2c963f66afa6" };
+      let item = { valor: this.valor, num_cartao: this.formataNumCartao(this.numCartao), id_aprovacao: "3fa85f64-5717-4562-b3fc-2c963f66afa6" };
       console.log("item", item)
       alert("oii")
       TransacoesService.addTransacao(item)
         .then(response => {
           if (response.success) {
             this.items = response.data.transacoes;
+            this.$toast.warning(
+              response.data.mensagem || response.statusMessage,
+              {
+                position: "top-center",
+                timeout: 5000,
+                hideProgressBar: false
+              }
+            );
           } else {
             this.$toast.warning(
               response.data.mensagem || response.statusMessage,
