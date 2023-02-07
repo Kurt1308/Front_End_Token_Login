@@ -8,8 +8,6 @@ export class TransacoesService extends BaseService {
   }
    static async addTransacao(params = {}) {
     assert.object(params, { required: true });
-    console.log(params)
-    alert("chegou service", params)
     try {
       const response = await this.request({ auth: true }, this.entity).post(
         'InserirTransacao',

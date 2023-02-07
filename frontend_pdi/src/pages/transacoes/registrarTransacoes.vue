@@ -71,8 +71,6 @@ export default {
     },
     inserirTransacoes() {
       let item = { valor: this.valor, num_cartao: this.formataNumCartao(this.numCartao), id_aprovacao: "3fa85f64-5717-4562-b3fc-2c963f66afa6" };
-      console.log("item", item)
-      alert("oii")
       TransacoesService.addTransacao(item)
         .then(response => {
           if (response.success) {
