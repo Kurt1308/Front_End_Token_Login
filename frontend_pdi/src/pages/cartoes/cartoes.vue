@@ -29,11 +29,11 @@
             </b-row>
 
             <b-row class="mb-2">
-              <b-col sm="2" class="text-sm-right"><b>Limite Saldo:</b></b-col>
+              <b-col sm="2" class="text-sm-right"><b>Limite Saldo Disponível:</b></b-col>
               <b-col>{{ formatDecimal(row.item.limite_saldo) }}</b-col>
 
               <b-col sm="2" class="text-sm-right"
-                ><b>Limite Disponível:</b></b-col
+                ><b>Limite Saldo:</b></b-col
               >
               <b-col>{{ formatDecimal(row.item.limite_saldo_disponivel) }}</b-col>
             </b-row>
