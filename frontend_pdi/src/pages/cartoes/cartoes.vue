@@ -9,7 +9,7 @@
           <!-- As `row.showDetails` is one-way, we call the toggleDetails function on @change -->
           <b-form-checkbox
             v-model="row.detailsShowing"
-            @change="row.toggleDetails"
+            @change="row.toggleDetails, fecharAcesso()"
           >
             Mostrar detalhes deste cartão
           </b-form-checkbox>
@@ -19,20 +19,20 @@
         </template>
 
         <template #row-details="row">
-          <div v-if="acessoLiberado == false">
-            <b-row>
+          <div>
+            <b-row v-if="acessoLiberado == false">
               <b-col sm="2" class="text-sm-right"
                 ><label
-                  ><b><h4>Digite sua senha:</h4></b></label
+                  ><b><h4>Digite o cvc:</h4></b></label
                 ></b-col
               >
               <b-col sm="2" class="text-sm-right"
-                ><b-form-input v-model="senhaInterna"></b-form-input></b-col
+                ><b-form-input v-model="cvc"></b-form-input></b-col
               ><b-col sm="0.5" class="text-sm-right"
                 ><b-button
                   style="margin-top:21%"
                   size="sm"
-                  @click="pedirAcesso()"
+                  @click="pedirAcesso(cvc, row.item)"
                   >Acessar</b-button
                 ></b-col
               >
@@ -59,7 +59,7 @@
               }}</b-col>
             </b-row>
 
-            <b-button size="sm" @click="row.toggleDetails"
+            <b-button size="sm" @click=" fecharAcesso()"
               >Hide Details</b-button
             >
           </b-card>
@@ -84,6 +84,28 @@ export default {
     };
   },
   methods: {
+    fecharAcesso(){
+      this.acessoLiberado = false;
+      this.senhaInterna = "";
+      console.log("oi")
+      console.log("oi")
+    },
+    pedirAcesso(cvc, row){
+      console.log("row", row)
+      let mensagem = "Senha incorreta!"
+      if(cvc == row.cvc){
+        this.acessoLiberado = true;
+      } else {
+        this.$toast.warning(
+              mensagem,
+              {
+                position: "top-center",
+                timeout: 5000,
+                hideProgressBar: false
+              }
+            );
+      }
+    },
     formatNumeroCartao(numCartao) {
       let numeroTratado =
         numCartao.toString().slice(0, 4) +
@@ -133,6 +155,7 @@ export default {
       CartoesService.getCartoes()
         .then(response => {
           if (response.success) {
+            console.log("cartões", response.data.cartoes)
             this.items = response.data.cartoes;
           } else {
             this.$toast.warning(
