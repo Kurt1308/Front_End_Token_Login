@@ -99,9 +99,7 @@ export default {
     pedirAcesso(cvc, row){
       console.log("row", row)
       let mensagem = "Senha incorreta!"
-      if(cvc == row.cvc){
-        this.cvc = row.cvc;
-      } else {
+      if(cvc != row.cvc){
         this.$toast.warning(
               mensagem,
               {
