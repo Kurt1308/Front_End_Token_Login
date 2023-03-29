@@ -9,7 +9,7 @@
           <!-- As `row.showDetails` is one-way, we call the toggleDetails function on @change -->
           <b-form-checkbox
             v-model="row.detailsShowing"
-            @change="row.toggleDetails, fecharAcesso()"
+            @change="row.toggleDetails"
           >
             Mostrar detalhes deste cartão
           </b-form-checkbox>
@@ -20,7 +20,7 @@
 
         <template #row-details="row">
           <div>
-            <b-row v-if="acessoLiberado == false">
+            <b-row v-show="row.item.cvc != cvc">
               <b-col sm="2" class="text-sm-right"
                 ><label
                   ><b><h4>Digite o cvc:</h4></b></label
@@ -38,8 +38,8 @@
               >
             </b-row>
           </div>
-          <b-card v-if="acessoLiberado == true">
-            <b-row class="mb-2">
+          <b-card >
+            <b-row v-show="row.item.cvc == cvc" class="mb-2">
               <b-col sm="2" class="text-sm-right"><b>Ano/Mês Venc:</b></b-col>
               <b-col>{{ formatAnoMesVenc(row.item.mes_ano_vencimento) }}</b-col>
 
@@ -47,7 +47,7 @@
               <b-col>{{ row.item.cvc }}</b-col>
             </b-row>
 
-            <b-row class="mb-2">
+            <b-row v-show="row.item.cvc == cvc" class="mb-2">
               <b-col sm="2" class="text-sm-right"
                 ><b>Limite Disponível:</b></b-col
               >
@@ -59,9 +59,9 @@
               }}</b-col>
             </b-row>
 
-            <b-button size="sm" @click=" fecharAcesso()"
+            <!-- <b-button size="sm" @click=" fecharAcesso()"
               >Hide Details</b-button
-            >
+            > -->
           </b-card>
         </template>
       </b-table>
@@ -75,6 +75,7 @@ export default {
   data() {
     return {
       acessoLiberado: false,
+      numeroCartaoParaAcesso: 0,
       fields: [
         //{ key: "conta_id_conta", label: "Id Conta" },
         { key: "num_cartao", label: "Número do Cartão" },
@@ -84,17 +85,22 @@ export default {
     };
   },
   methods: {
-    fecharAcesso(){
-      this.acessoLiberado = false;
-      this.senhaInterna = "";
-      console.log("oi")
-      console.log("oi")
+    limparCVC(toggleDetails){
+      console.log("oi", toggleDetails)
+      this.cvc = "";
     },
+    // fecharAcesso(){
+    //   this.numeroCartaoParaAcesso = true;
+    //   this.row.item.cvc = "",
+    //   this.cvc = "";
+    //   console.log("oi")
+    //   console.log("oi")
+    // },
     pedirAcesso(cvc, row){
       console.log("row", row)
       let mensagem = "Senha incorreta!"
       if(cvc == row.cvc){
-        this.acessoLiberado = true;
+        this.cvc = row.cvc;
       } else {
         this.$toast.warning(
               mensagem,
