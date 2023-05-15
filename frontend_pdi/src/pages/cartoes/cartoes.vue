@@ -20,7 +20,7 @@
 
         <template #row-details="row">
           <div>
-            <b-row v-show="row.item.cvc != cvc">
+            <b-row v-show="row.item.cvc != cvc1">
               <b-col sm="2" class="text-sm-right"
                 ><label
                   ><b><h4>Digite o cvc:</h4></b></label
@@ -39,7 +39,7 @@
             </b-row>
           </div>
           <b-card >
-            <b-row v-show="row.item.cvc == cvc" class="mb-2">
+            <b-row v-show="row.item.cvc == cvc1" class="mb-2">
               <b-col sm="2" class="text-sm-right"><b>Ano/Mês Venc:</b></b-col>
               <b-col>{{ formatAnoMesVenc(row.item.mes_ano_vencimento) }}</b-col>
 
@@ -47,7 +47,7 @@
               <b-col>{{ row.item.cvc }}</b-col>
             </b-row>
 
-            <b-row v-show="row.item.cvc == cvc" class="mb-2">
+            <b-row v-show="row.item.cvc == cvc1" class="mb-2">
               <b-col sm="2" class="text-sm-right"
                 ><b>Limite Disponível:</b></b-col
               >
@@ -76,6 +76,7 @@ export default {
     return {
       acessoLiberado: false,
       numeroCartaoParaAcesso: 0,
+      cvc1: null,
       fields: [
         //{ key: "conta_id_conta", label: "Id Conta" },
         { key: "num_cartao", label: "Número do Cartão" },
@@ -109,6 +110,8 @@ export default {
               }
             );
       }
+      this.cvc1 = this.cvc;
+      this.cvc = null;
     },
     formatNumeroCartao(numCartao) {
       let numeroTratado =
