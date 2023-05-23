@@ -99,7 +99,7 @@ export default {
     // },
     pedirAcesso(cvc, row){
       console.log("row", row)
-      let mensagem = "Senha incorreta!"
+      let mensagem = "CVC incorreto!"
       if(cvc != row.cvc){
         this.$toast.warning(
               mensagem,
