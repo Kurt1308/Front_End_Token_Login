@@ -6,7 +6,6 @@
     <b-container id="table-contas">
       <b-table bordered striped hover :items="items" :fields="fields">
         <template #cell(show_details)="row">
-          <!-- As `row.showDetails` is one-way, we call the toggleDetails function on @change -->
           <b-form-checkbox
             v-model="row.detailsShowing"
             @change="row.toggleDetails"
@@ -58,10 +57,6 @@
                 formatDecimal(row.item.limite_saldo_disponivel)
               }}</b-col>
             </b-row>
-
-            <!-- <b-button size="sm" @click=" fecharAcesso()"
-              >Hide Details</b-button
-            > -->
           </b-card>
         </template>
       </b-table>
@@ -78,7 +73,6 @@ export default {
       numeroCartaoParaAcesso: 0,
       cvc1: null,
       fields: [
-        //{ key: "conta_id_conta", label: "Id Conta" },
         { key: "num_cartao", label: "Número do Cartão" },
         { key: "show_details", label: "Detalhes" }
       ],
@@ -90,13 +84,6 @@ export default {
       console.log("oi", toggleDetails)
       this.cvc = "";
     },
-    // fecharAcesso(){
-    //   this.numeroCartaoParaAcesso = true;
-    //   this.row.item.cvc = "",
-    //   this.cvc = "";
-    //   console.log("oi")
-    //   console.log("oi")
-    // },
     pedirAcesso(cvc, row){
       console.log("row", row)
       let mensagem = "CVC incorreto!"
