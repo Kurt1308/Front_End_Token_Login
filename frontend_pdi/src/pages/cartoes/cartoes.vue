@@ -72,6 +72,7 @@ export default {
       acessoLiberado: false,
       numeroCartaoParaAcesso: 0,
       cvc1: null,
+      cvc: null,
       fields: [
         { key: "num_cartao", label: "Número do Cartão" },
         { key: "show_details", label: "Detalhes" }
@@ -80,10 +81,6 @@ export default {
     };
   },
   methods: {
-    limparCVC(toggleDetails){
-      console.log("oi", toggleDetails)
-      this.cvc = "";
-    },
     pedirAcesso(cvc, row){
       console.log("row", row)
       let mensagem = "CVC incorreto!"
